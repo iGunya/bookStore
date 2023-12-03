@@ -1,4 +1,4 @@
-export default interface BooksLoadedAction {
+export default interface BooksAction {
     type: string;
     payload: any;
 }

@@ -1,24 +1,14 @@
-import BooksLoadedAction from "../types/action";
+import BooksAction from "../types/action";
 import { IBooks } from "../types/types";
+import {BookActionTypes} from "../action";
 
 const initialState: IBooks = {
-    books: [
-        {
-            id: 1,
-            title: 'ДА',
-            author: 'Yes'
-        },
-        {
-            id: 2,
-            title: 'Нет',
-            author: 'No'
-        }
-    ]
+    books: []
 }
 
-const reducer = (state = initialState, action: BooksLoadedAction): IBooks => {
+const reducer = (state = initialState, action: BooksAction): IBooks => {
     switch (action.type) {
-        case 'BOOKS_LOADED':
+        case BookActionTypes.BOOKS_LOADED:
             return {
                 books: action.payload
             }

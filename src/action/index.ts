@@ -1,9 +1,13 @@
-import BooksLoadedAction from "../types/action"
-import {IBooks} from "../types/types";
+import BooksAction from "../types/action"
+import {IBook, IBooks} from "../types/types";
 
-const booksLoaded = (newBooks: IBooks) : BooksLoadedAction => {
+export enum BookActionTypes {
+  BOOKS_LOADED = 'BOOKS_LOADED'
+}
+
+const booksLoaded = (newBooks: IBook[]) : BooksAction => {
   return {
-    type: 'BOOKS_LOADED',
+    type: BookActionTypes.BOOKS_LOADED,
     payload: newBooks
   }
 }

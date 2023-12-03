@@ -7,13 +7,18 @@ export default class BookstoreService {
         return [
             {
                 id: 1,
-                title: 'ДА',
-                author: 'Yes'
+                title: 'Чистый код',
+                author: 'Роберт Мартин'
             },
             {
                 id: 2,
-                title: 'Нет',
-                author: 'No'
+                title: 'Паттерны Объектно-ориентированного проектирования',
+                author: 'Э. Гамма, Р. Хелм, Р. Джонсон, Дж. Виссидес'
+            },
+            {
+                id: 3,
+                title: 'Чистая архитектура',
+                author: 'Роберт Мартин'
             }
         ];
     }
