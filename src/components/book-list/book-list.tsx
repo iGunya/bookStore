@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import BookListItem from "../bookListItem";
+import BookListItem from "../book-list-item";
 import {RootState} from "../../srote";
 import {connect} from "react-redux";
 import {IBook} from "../../types/types";

@@ -1,5 +1,5 @@
-import CardPage from "./cardPage";
-import HomePage from "./homePage";
+import CardPage from "./card-page";
+import HomePage from "./home-page";
 
 export {
   CardPage,

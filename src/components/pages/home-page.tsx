@@ -1,5 +1,5 @@
 import React from "react"
-import {BookList} from "../bookList";
+import {BookList} from "../book-list";
 
 const HomePage: React.FC = () => {
 
