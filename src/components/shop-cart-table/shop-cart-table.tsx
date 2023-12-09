@@ -11,31 +11,35 @@ const ShopCartTable: React.FC<Props> = () => {
        <h2>Ваш заказ</h2>
        <table className="table">
          <thead>
-          <th>#</th>
-          <th>Товар</th>
-          <th>Кол-во</th>
-          <th>Цена</th>
-          <th>Автор</th>
-          <th>Действия</th>
+           <tr>
+            <th>#</th>
+            <th>Товар</th>
+            <th>Кол-во</th>
+            <th>Цена</th>
+            <th>Автор</th>
+            <th>Действия</th>
+           </tr>
          </thead>
 
          <tbody>
-           <td>1</td>
-           <td>Чистый код</td>
-           <td>1</td>
-           <td>$772</td>
-           <td>Роберт Мартин</td>
-            <td>
-              <button className="btn btn-outline-success">
-                <i className="bi bi-plus-circle-fill" />
-              </button>
-              <button className="btn btn-outline-danger">
-                <i className="bi bi-trash3-fill" />
-              </button>
-              <button className="btn btn-outline-warning">
-                <i className="bi bi-dash-circle-fill" />
-              </button>
-            </td>
+           <tr>
+             <td>1</td>
+             <td>Чистый код</td>
+             <td>1</td>
+             <td>$772</td>
+             <td>Роберт Мартин</td>
+              <td>
+                <button className="btn btn-outline-success">
+                  <i className="bi bi-plus-circle-fill" />
+                </button>
+                <button className="btn btn-outline-danger">
+                  <i className="bi bi-trash3-fill" />
+                </button>
+                <button className="btn btn-outline-warning">
+                  <i className="bi bi-dash-circle-fill" />
+                </button>
+              </td>
+           </tr>
          </tbody>
        </table>
 
