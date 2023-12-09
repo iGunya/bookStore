@@ -7,7 +7,9 @@ export default interface Props {
 export interface IBook{
   id: number,
   title?: string,
-  author?: string
+  author?: string,
+  price: number,
+  imgUri: string
 }
 
 export interface IBooks extends Props{

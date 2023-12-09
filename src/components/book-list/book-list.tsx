@@ -7,6 +7,8 @@ import {withBookStoreService} from "../hoc/with-book-store-service";
 import BookstoreService from "../../services/bookstore-service";
 import {booksLoaded} from "../../action";
 
+import "./book-list.css"
+
 interface Props {
   books: IBook[]
   bookstoreService: BookstoreService
@@ -28,7 +30,7 @@ class BookList extends Component<Props> {
     const {books} = this.props;
 
     return (
-      <ul>
+      <ul className="book-list">
         {
           books.map((book) => {
             return (

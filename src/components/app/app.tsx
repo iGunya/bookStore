@@ -7,15 +7,17 @@ import "./app.css";
 const App: React.FC = (  ) => {
 
     return (
-        <Routes>
-            <Route
-                path="/"
-                element={<HomePage/>}/>
+        <main role="main" className="container">
+            <Routes>
+                <Route
+                    path="/"
+                    element={<HomePage/>}/>
 
-            <Route
-                path="/cart"
-                element={<CardPage/>}/>
-        </Routes>
+                <Route
+                    path="/cart"
+                    element={<CardPage/>}/>
+            </Routes>
+        </main>
     );
 };
 

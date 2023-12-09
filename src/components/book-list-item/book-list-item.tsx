@@ -1,11 +1,18 @@
-import { Fragment } from "react";
-import { IBook } from "../../types/types";
- 
+import {IBook} from "../../types/types";
+import "./book-list-item.css"
+
 export const BookListItem: React.FC<IBook> = (book: IBook) => {
   return (
-    <Fragment>
-      <span>{book.title}</span>
-      <span>{book.author}</span>
-    </Fragment>
+    <div className="book-list-item">
+        <div className="book-cover">
+            <img src={book.imgUri} alt="cover"/>
+        </div>
+        <div className="book-details">
+            <a href="#" className="book-title">{book.title}</a>
+            <div className="book-author">{book.author}</div>
+            <div className="book-price">{book.price}</div>
+            <button className="btn btn-info add-to-card">Добавить в корзину</button>
+        </div>
+    </div>
   )
 }
