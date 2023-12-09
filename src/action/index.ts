@@ -6,7 +6,8 @@ import {RootDispatch} from "../srote";
 export enum BookActionTypes {
   FETCH_BOOKS_REQUEST = 'FETCH_BOOKS_REQUEST',
   FETCH_BOOKS_SUCCESS = 'FETCH_BOOKS_SUCCESS',
-  FETCH_BOOKS_ERROR = 'FETCH_BOOKS_ERROR'
+  FETCH_BOOKS_ERROR = 'FETCH_BOOKS_ERROR',
+  ADD_BOOK_TO_CARD = 'ADD_BOOK_TO_CARD'
 }
 
 const booksLoaded = (newBooks: IBook[]) : BooksAction => {
@@ -29,6 +30,13 @@ const booksError = ( error: string ) : BooksAction => {
   }
 }
 
+const addBookToCard = ( id: number ) : BooksAction => {
+  return {
+    type: BookActionTypes.ADD_BOOK_TO_CARD,
+    payload: id
+  }
+}
+
 const fetchBooks = ( bookstoreService: BookstoreService, dispatch: RootDispatch ) => () => {
   dispatch(booksRequested());
   bookstoreService.getBooks()
@@ -37,5 +45,6 @@ const fetchBooks = ( bookstoreService: BookstoreService, dispatch: RootDispatch 
 }
 
 export {
-  fetchBooks
+  fetchBooks,
+  addBookToCard
 }

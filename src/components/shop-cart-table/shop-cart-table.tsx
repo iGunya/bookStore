@@ -1,11 +1,50 @@
 import React from "react";
 import "./shop-cart-table.css"
+import {ICartItem, ICartItems, ITotalPrice} from "../../types/types";
+import {RootState} from "../../srote";
+import {connect} from "react-redux";
 
-interface Props {
-
+interface DispatchProps {
+  onIncrease: (id: number) => void
+  onDecrease: (id: number) => void;
+  onDelete: (id: number) => void;
 }
 
-const ShopCartTable: React.FC<Props> = () => {
+type StateProps = ICartItems & ITotalPrice;
+
+type Props = StateProps & DispatchProps
+
+const ShopCartTable: React.FC<Props> = (props: Props) => {
+
+  const { cartItems, totalPrice } = props;
+  const { onIncrease, onDecrease, onDelete } = props;
+
+  const renderRow = ({id, name, count, total}: ICartItem, indx: number) => {
+    return (
+      <tr>
+        <td>{indx + 1}</td>
+        <td>{name}</td>
+        <td>{count}</td>
+        <td>₽{total}</td>
+        <td>
+          <button className="btn btn-outline-success"
+                  onClick={() => onIncrease(id)}>
+            <i className="bi bi-plus-circle-fill" />
+          </button>
+          <button className="btn btn-outline-warning"
+                  onClick={() => onDecrease(id)}>
+            <i className="bi bi-dash-circle-fill" />
+          </button>
+          <button className="btn btn-outline-danger"
+                  onClick={() => onDelete(id)}>
+            <i className="bi bi-trash3-fill" />
+          </button>
+
+        </td>
+      </tr>
+    )
+  }
+
   return (
      <div className="shopping-cart-table">
        <h2>Ваш заказ</h2>
@@ -16,38 +55,45 @@ const ShopCartTable: React.FC<Props> = () => {
             <th>Товар</th>
             <th>Кол-во</th>
             <th>Цена</th>
-            <th>Автор</th>
             <th>Действия</th>
            </tr>
          </thead>
 
          <tbody>
-           <tr>
-             <td>1</td>
-             <td>Чистый код</td>
-             <td>1</td>
-             <td>$772</td>
-             <td>Роберт Мартин</td>
-              <td>
-                <button className="btn btn-outline-success">
-                  <i className="bi bi-plus-circle-fill" />
-                </button>
-                <button className="btn btn-outline-danger">
-                  <i className="bi bi-trash3-fill" />
-                </button>
-                <button className="btn btn-outline-warning">
-                  <i className="bi bi-dash-circle-fill" />
-                </button>
-              </td>
-           </tr>
+           {
+             cartItems.map((item, indx)=> {
+               return renderRow(item, indx);
+             })
+           }
          </tbody>
        </table>
 
        <div className="total">
-         Итоговая цена: $772
+         Итоговая цена: ₽{totalPrice}
        </div>
      </div>
   )
 }
 
-export default ShopCartTable
+const mapStateToProps = (state: RootState) => {
+  return {
+    cartItems: state.booksReducer.cartItems,
+    totalPrice: state.booksReducer.totalPrice
+  }
+}
+
+const mapDispatchToProps = () => {
+  return {
+    onIncrease: (id: number) => {
+      console.log("onIncrease" + id);
+    },
+    onDecrease: (id: number) => {
+      console.log("onDecrease" + id);
+    },
+    onDelete: (id: number) => {
+      console.log("onDelete" + id);
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShopCartTable );

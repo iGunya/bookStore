@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import {IBook} from "../../types/types";
 import {withBookStoreService} from "../hoc/with-book-store-service";
 import BookstoreService from "../../services/bookstore-service";
-import {fetchBooks} from "../../action";
+import {fetchBooks, addBookToCard} from "../../action";
 import Spinner from "../spiner";
 
 import "./book-list.css"
@@ -18,7 +18,8 @@ interface StateProps {
 }
 
 interface DispatchProps {
-  fetchBooks: () => void
+  fetchBooks: () => void,
+  onAddToCard: (id: number) => void
 }
 
 interface OwnProps {
@@ -27,14 +28,15 @@ interface OwnProps {
 
 type Props = StateProps & DispatchProps & OwnProps;
 
-const BookList: React.FC<Pick<StateProps, "books">> = ( { books } ) => {
+const BookList: React.FC<Pick<Props, "books" | "onAddToCard">> = ( { books, onAddToCard } ) => {
   return (
     <ul className="book-list">
       {
         books.map((book) => {
           return (
             <li key={book.id}>
-              <BookListItem {...book} />
+              <BookListItem book={book}
+              onAddToCard={ () => onAddToCard(book.id) }/>
             </li>
           )
         })
@@ -52,6 +54,7 @@ class BookListContainer extends Component<Props> {
 
   render() {
     const {books, loading, error} = this.props;
+    const {onAddToCard} = this.props;
 
     if ( error !== "" ) {
       return (
@@ -59,7 +62,10 @@ class BookListContainer extends Component<Props> {
       )
     }
 
-    return loading ? <Spinner/> : <BookList books={books} />
+    return loading ? <Spinner/> :
+      <BookList
+        books={books}
+        onAddToCard={onAddToCard}/>
   }
 }
 
@@ -73,7 +79,8 @@ const mapStateToProps = (state: RootState) => {
 
 const mapDispatchToProps = (dispatch: RootDispatch, { bookstoreService }: OwnProps) => {
   return {
-    fetchBooks: fetchBooks( bookstoreService, dispatch )
+    fetchBooks: fetchBooks( bookstoreService, dispatch ),
+    onAddToCard: (id: number) => dispatch( addBookToCard( id ) )
   }
 };
 
