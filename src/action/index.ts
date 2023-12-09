@@ -3,7 +3,8 @@ import {IBook, IBooks} from "../types/types";
 
 export enum BookActionTypes {
   BOOKS_LOADED = 'BOOKS_LOADED',
-  BOOKS_REQUESTED = 'BOOKS_REQUESTED'
+  BOOKS_REQUESTED = 'BOOKS_REQUESTED',
+  BOOKS_ERROR = 'BOOKS_ERROR'
 }
 
 const booksLoaded = (newBooks: IBook[]) : BooksAction => {
@@ -19,7 +20,15 @@ const booksRequested = () : BooksAction => {
   }
 }
 
+const booksError = ( error: string ) : BooksAction => {
+  return {
+    type: BookActionTypes.BOOKS_ERROR,
+    payload: error
+  }
+}
+
 export {
   booksLoaded,
-  booksRequested
+  booksRequested,
+  booksError
 }

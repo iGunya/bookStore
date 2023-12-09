@@ -20,6 +20,11 @@ export interface ILoading {
   loading: boolean
 }
 
+export interface IError {
+  error: string
+}
+
 export type BooksState =
   & IBooks
   & ILoading
+  & IError

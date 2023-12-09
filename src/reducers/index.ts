@@ -4,7 +4,8 @@ import {BooksState} from "../types/types";
 
 const initialState: BooksState = {
     books: [],
-    loading: true
+    loading: true,
+    error: ""
 }
 
 const reducer = (state = initialState, action: BooksAction): BooksState => {
@@ -12,12 +13,20 @@ const reducer = (state = initialState, action: BooksAction): BooksState => {
         case BookActionTypes.BOOKS_REQUESTED:
             return {
                 books: [],
-                loading: true
+                loading: true,
+                error: ""
             }
         case BookActionTypes.BOOKS_LOADED:
             return {
                 books: action.payload,
-                loading: false
+                loading: false,
+                error: ""
+            }
+        case BookActionTypes.BOOKS_ERROR:
+            return {
+                books: [],
+                loading: false,
+                error: action.payload
             }
         default:
             return state;
