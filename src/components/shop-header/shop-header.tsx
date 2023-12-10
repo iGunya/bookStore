@@ -1,6 +1,8 @@
 import React from "react";
 import "./shop-header.css"
 import {Link} from "react-router-dom";
+import {RootState} from "../../srote";
+import {connect} from "react-redux";
 
 interface Props {
   numItems: number,
@@ -23,4 +25,12 @@ const ShopHeader: React.FC<Props> = ( { numItems, total }  ) => {
   )
 }
 
-export default ShopHeader
+const mapStateToProps = (state: RootState) => {
+  return {
+    // @ts-ignore
+    numItems: state.booksReducer["shoppingCart"]["cartItems"].length,
+    total: state.booksReducer["shoppingCart"]["totalPrice"],
+  }
+}
+
+export default connect( mapStateToProps )( ShopHeader )

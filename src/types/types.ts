@@ -26,21 +26,28 @@ export interface ICartItems extends Props {
   cartItems: ICartItem[]
 }
 
-export interface ILoading {
-  loading: boolean
-}
-
-export interface IError {
-  error: string
-}
-
-export interface ITotalPrice {
-  totalPrice: number
-}
-
-export type BooksState =
+export type BookList =
   & IBooks
   & ILoading
   & IError
+
+export interface ITotalPrice {
+  totalPrice: number,
+}
+
+export interface ILoading {
+  loading: boolean,
+}
+
+export interface IError {
+  error: string,
+}
+
+export type ShoppingCart =
   & ICartItems
   & ITotalPrice
+
+export interface BooksState {
+  bookList: BookList,
+  shoppingCart: ShoppingCart
+}

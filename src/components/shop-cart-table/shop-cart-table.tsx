@@ -1,8 +1,9 @@
 import React from "react";
 import "./shop-cart-table.css"
-import {ICartItem, ICartItems, ITotalPrice} from "../../types/types";
+import {ICartItem, ICartItems, ITotalPrice,} from "../../types/types";
 import {RootState} from "../../srote";
 import {connect} from "react-redux";
+import {addBookToCard, removeBookFromCart, allRemoveBookFromCart} from "../../action";
 
 interface DispatchProps {
   onIncrease: (id: number) => void
@@ -21,7 +22,7 @@ const ShopCartTable: React.FC<Props> = (props: Props) => {
 
   const renderRow = ({id, name, count, total}: ICartItem, indx: number) => {
     return (
-      <tr>
+      <tr key={id}>
         <td>{indx + 1}</td>
         <td>{name}</td>
         <td>{count}</td>
@@ -77,23 +78,15 @@ const ShopCartTable: React.FC<Props> = (props: Props) => {
 
 const mapStateToProps = (state: RootState) => {
   return {
-    cartItems: state.booksReducer.cartItems,
-    totalPrice: state.booksReducer.totalPrice
+    cartItems: state.booksReducer["shoppingCart"]["cartItems"],
+    totalPrice: state.booksReducer["shoppingCart"]["totalPrice"]
   }
 }
 
-const mapDispatchToProps = () => {
-  return {
-    onIncrease: (id: number) => {
-      console.log("onIncrease" + id);
-    },
-    onDecrease: (id: number) => {
-      console.log("onDecrease" + id);
-    },
-    onDelete: (id: number) => {
-      console.log("onDelete" + id);
-    }
-  }
+const mapDispatchToProps: DispatchProps = {
+  onIncrease: addBookToCard,
+  onDecrease: removeBookFromCart,
+  onDelete: allRemoveBookFromCart
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShopCartTable );
+export default connect(mapStateToProps, mapDispatchToProps)(ShopCartTable);

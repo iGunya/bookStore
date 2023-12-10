@@ -7,7 +7,9 @@ export enum BookActionTypes {
   FETCH_BOOKS_REQUEST = 'FETCH_BOOKS_REQUEST',
   FETCH_BOOKS_SUCCESS = 'FETCH_BOOKS_SUCCESS',
   FETCH_BOOKS_ERROR = 'FETCH_BOOKS_ERROR',
-  ADD_BOOK_TO_CARD = 'ADD_BOOK_TO_CARD'
+  ADD_BOOK_TO_CARD = 'ADD_BOOK_TO_CARD',
+  REMOVE_BOOK_FROM_CARD = 'REMOVE_BOOK_FROM_CARD',
+  ALL_REMOVE_BOOK_FROM_CARD = 'ALL_REMOVE_BOOK_FROM_CARD'
 }
 
 const booksLoaded = (newBooks: IBook[]) : BooksAction => {
@@ -37,6 +39,20 @@ const addBookToCard = ( id: number ) : BooksAction => {
   }
 }
 
+const removeBookFromCart = ( id: number ) : BooksAction => {
+  return {
+    type: BookActionTypes.REMOVE_BOOK_FROM_CARD,
+    payload: id
+  }
+}
+
+const allRemoveBookFromCart = ( id: number ) : BooksAction => {
+  return {
+    type: BookActionTypes.ALL_REMOVE_BOOK_FROM_CARD,
+    payload: id
+  }
+}
+
 const fetchBooks = ( bookstoreService: BookstoreService, dispatch: RootDispatch ) => () => {
   dispatch(booksRequested());
   bookstoreService.getBooks()
@@ -46,5 +62,7 @@ const fetchBooks = ( bookstoreService: BookstoreService, dispatch: RootDispatch 
 
 export {
   fetchBooks,
-  addBookToCard
+  addBookToCard,
+  removeBookFromCart,
+  allRemoveBookFromCart
 }
