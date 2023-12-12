@@ -18,7 +18,7 @@ const ShopHeader: React.FC<Props> = ( { numItems, total }  ) => {
        <Link to="/cart">
          <div className="shop-cart">
            <i className="cart-icon bi bi-cart3"/>
-           {numItems} items (₽{total})
+           {numItems} товаров в корзине (₽{total})
          </div>
        </Link>
      </header>

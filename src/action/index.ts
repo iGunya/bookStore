@@ -9,7 +9,8 @@ export enum BookActionTypes {
   FETCH_BOOKS_ERROR = 'FETCH_BOOKS_ERROR',
   ADD_BOOK_TO_CARD = 'ADD_BOOK_TO_CARD',
   REMOVE_BOOK_FROM_CARD = 'REMOVE_BOOK_FROM_CARD',
-  ALL_REMOVE_BOOK_FROM_CARD = 'ALL_REMOVE_BOOK_FROM_CARD'
+  ALL_REMOVE_BOOK_FROM_CARD = 'ALL_REMOVE_BOOK_FROM_CARD',
+  SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 }
 
 const booksLoaded = (newBooks: IBook[]) : BooksAction => {
@@ -53,6 +54,13 @@ const allRemoveBookFromCart = ( id: number ) : BooksAction => {
   }
 }
 
+const setCurrentPage = ( page: number ) : BooksAction => {
+  return {
+    type: BookActionTypes.SET_CURRENT_PAGE,
+    payload: page
+  }
+}
+
 const fetchBooks = ( bookstoreService: BookstoreService, dispatch: RootDispatch ) => () => {
   dispatch(booksRequested());
   bookstoreService.getBooks()
@@ -64,5 +72,6 @@ export {
   fetchBooks,
   addBookToCard,
   removeBookFromCart,
-  allRemoveBookFromCart
+  allRemoveBookFromCart,
+  setCurrentPage
 }

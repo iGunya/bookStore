@@ -18,7 +18,7 @@ export const BookListItem: React.FC<Props> = (props: Props) => {
         <div className="book-details">
             <a href="#" className="book-title">{book.title}</a>
             <div className="book-author">{book.author}</div>
-            <div className="book-price">{book.price}</div>
+            <div className="book-price">₽{book.price}</div>
             <button className="btn btn-info add-to-card"
             onClick={() => onAddToCard()}>
               Добавить в корзину

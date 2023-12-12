@@ -64,27 +64,36 @@ const updateBookList = ( state: BooksState, action: BooksAction ): BookList => {
         return {
             books: [],
             loading: true,
-            error: ""
+            error: "",
+            curPage: 1
         }
 
     switch (action.type) {
         case BookActionTypes.FETCH_BOOKS_SUCCESS:
             return {
+                ...state.bookList,
                 books: [],
                 loading: true,
                 error: ""
             }
         case BookActionTypes.FETCH_BOOKS_REQUEST:
             return {
+                ...state.bookList,
                 books: action.payload,
                 loading: false,
                 error: ""
             }
         case BookActionTypes.FETCH_BOOKS_ERROR:
             return {
+                ...state.bookList,
                 books: [],
                 loading: false,
                 error: action.payload
+            }
+        case BookActionTypes.SET_CURRENT_PAGE:
+            return {
+                ...state.bookList,
+                curPage: action.payload
             }
         default:
             return state.bookList

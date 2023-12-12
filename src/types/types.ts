@@ -30,6 +30,7 @@ export type BookList =
   & IBooks
   & ILoading
   & IError
+  & ICurrentPage
 
 export interface ITotalPrice {
   totalPrice: number,
@@ -37,6 +38,10 @@ export interface ITotalPrice {
 
 export interface ILoading {
   loading: boolean,
+}
+
+export interface ICurrentPage {
+  curPage: number,
 }
 
 export interface IError {
