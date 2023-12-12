@@ -14,7 +14,7 @@ export default class ErrorBoundry extends React.Component<Props> {
 
     render() {
         if (this.state.hasError) {
-            return <ErrorIndicator />;
+            return <ErrorIndicator errorText="Произошла фатальная ошибка" />;
         }
         return this.props.children;
     }

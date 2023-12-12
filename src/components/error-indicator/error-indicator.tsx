@@ -1,10 +1,17 @@
 import React from "react";
 import "./error-indicator.css"
+import {Alert} from "@mui/material";
 
-const ErrorIndicator = () => {
+interface Props {
+  errorText: string
+}
+
+const ErrorIndicator: React.FC<Props> = (props: Props) => {
     return (
         <div>
-            Error
+          <Alert variant="filled" severity="error">
+            {props.errorText}
+          </Alert>
         </div>
     );
 };

@@ -17,12 +17,12 @@ const ShopFooter: React.FC<Props> = () => {
        </div>
        <div className="social-link">
          <a className="btn btn-primary btn-floating m-1 github-link"
-            href="#!"
+            href="https://github.com/iGunya"
             role="button">
            <i className="bi bi-github"/>
          </a>
          <a className="btn btn-primary btn-floating m-1 telegram-link"
-            href="#!"
+            href="https://t.me/Gushri"
             role="button">
            <i className="bi bi-telegram"/>
          </a>

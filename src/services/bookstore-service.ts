@@ -122,10 +122,10 @@ export default class BookstoreService {
         return new Promise( (resolve, reject) => {
             setTimeout( () => {
                 if (Math.random() > 0.75)
-                    reject(new Error("Все плохо"))
+                    reject(new Error("Тестовая ошибка которая возникает с вероятностью 25% при получении списка книг"))
                 else
                     resolve(this.data)
-            }, 800 )
+            }, Math.random() * 1000 )
           }
         )
     }

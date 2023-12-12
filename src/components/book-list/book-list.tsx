@@ -37,6 +37,7 @@ const BookList: React.FC<Pick<Props, "books" | "onAddToCard" | "curPage" | "setC
   { books, onAddToCard, curPage, setCurrentPage } ) => {
 
   const startIdx = ( curPage - 1 ) * COUNT_BOOK_ON_PAGE;
+  const allPages = Math.ceil( books.length / COUNT_BOOK_ON_PAGE );
 
   const handleChangePage = (event: React.ChangeEvent<unknown>, value: number) => {
     console.log(value);
@@ -59,8 +60,9 @@ const BookList: React.FC<Pick<Props, "books" | "onAddToCard" | "curPage" | "setC
       </ul>
       <div className="book-pagination">
         <Pagination
-          count={6}
+          count={allPages}
           siblingCount={1}
+          page={curPage}
           variant="outlined"
           onChange={handleChangePage}/>
       </div>
@@ -70,11 +72,11 @@ const BookList: React.FC<Pick<Props, "books" | "onAddToCard" | "curPage" | "setC
 
 class BookListContainer extends Component<Props> {
 
-  // componentDidUpdate(prevProps: Props) {
-  //   if (this.props.books !== prevProps.books) {
-  //     this.props.fetchBooks();
-  //   }
-  // }
+  componentDidUpdate(prevProps: Props) {
+    if (this.props.curPage !== prevProps.curPage) {
+      this.props.fetchBooks();
+    }
+  }
 
   componentDidMount() {
     this.props.fetchBooks();
@@ -87,7 +89,7 @@ class BookListContainer extends Component<Props> {
 
     if ( error !== "" ) {
       return (
-        <ErrorIndicator/>
+        <ErrorIndicator errorText={error}/>
       )
     }
 

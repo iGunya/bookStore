@@ -65,7 +65,7 @@ const fetchBooks = ( bookstoreService: BookstoreService, dispatch: RootDispatch 
   dispatch(booksRequested());
   bookstoreService.getBooks()
     .then( (data: IBook[]) => dispatch( booksLoaded( data ) ) )
-    .catch( ( error: string ) => dispatch( booksError( error ) ) )
+    .catch( ( error: Error ) => dispatch( booksError( error.message ) ) )
 }
 
 export {
